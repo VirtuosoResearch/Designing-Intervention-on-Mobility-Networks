@@ -1,4 +1,4 @@
-# Spectrally Optimal Intervention on Weighted Networks via Iterative Edge Centrality Minimization
+# Optimal Intervention on Weighted Networks via Edge Centrality
 
 ### Overview
 
