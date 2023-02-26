@@ -5,11 +5,17 @@ from scipy import sparse
 from pickle import load
 from numpy.core.fromnumeric import shape
 from edge_intervention import modify_weights
-from seir_model import SEIR
+from seir_model import SEIR, SIR, SIS
 import matplotlib.pyplot as plt
 
 from helper_constants import *
-from helper_functions import load_static_networks
+from helper_functions import load_networks, load_cbg_population, generate_networks_from_safegraph, load_static_networks
+
+epidemic_models = {
+    "seir": SEIR,
+    "sir": SIR,
+    "sis": SIS
+}
 
 def main(args=None):
     msa_name = args.MSA
@@ -43,7 +49,7 @@ def main(args=None):
         strategy_param['poi_indexes'] = np.load(MONTHLY_NETWORK_DIR(msa_name) + 'poi_indexes.npy')
     modified_weights = modify_weights(weights.copy(), budget, args.strategy, strategy_param)
     try:
-        U, D, Vt = sparse.linalg.svds(modified_weights @ modified_weights.transpose(), k=10)
+        U, D, Vt = sparse.linalg.svds(modified_weights, k=10)
         print('top eigs for modified networks', D)
     except:
         print("Modified weights non-valid SVD")
@@ -53,7 +59,7 @@ def main(args=None):
     I_list = []
     R_list = []
     for run in range(args.runs):
-        model = SEIR(
+        model = epidemic_models[args.model](
             num_cbg=num_cbg, # real data
             num_poi=num_poi, # real data
             graph_weights=modified_weights, # real data
@@ -85,6 +91,8 @@ def main(args=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument('--model', type=str, default="seir")
+
     parser.add_argument('--runs', type=int, default=50)
     parser.add_argument('--MSA', type=str, default='NY')
     parser.add_argument('--epochs', type=int, default=70)
