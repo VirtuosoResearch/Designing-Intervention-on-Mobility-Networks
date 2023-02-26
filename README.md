@@ -76,7 +76,7 @@ Please run the experiments inside the `social` path. We provide scripts in `./so
 If you find this repository useful or happen to use it in a research paper, please cite our work with the following bib information.
 
 ```
-@article{li2022optimal,
+@article{li2023optimal,
   title={Optimal Intervention on Weighted Networks via Edge Centrality},
   author={Li, Dongyue and Eliassi-Rad, Tina and Zhang, Hongyang R},
   booktitle={SIAM International Conference on Data Mining},
