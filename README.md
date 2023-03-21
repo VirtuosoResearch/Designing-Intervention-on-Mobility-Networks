@@ -1,8 +1,6 @@
 ### Overview
 
-This repository provides the implementation for the paper "Optimal Intervention on Weighted Networks via Edge Centrality", which will be presented as a poster paper in SDM 2023.
-
-In this work, we introduce an algorithm, Frank-Wolfe-Edge Centrality, designed to reduce the number of infections during a spreading process, such as an epidemic, on both static and time-varying weighted networks. With theoretical guarantees, this algorithm minimizes the sum of the largest r singular values in the network by iterating through finding the gradient descent direction of the objective. The descent direction is given by a greedy selection of edges with the highest edge centrality values, resulting in an effective edge weight reduction method. Our algorithm exhibits significant performance on mobility networks and weighted graphs, and we offer the code to run experiments on these networks.
+This repository describes an algorithm, designed to reduce the number of infections during a spreading process, such as an epidemic, on both static and time-varying weighted networks. With theoretical guarantees, this algorithm minimizes the sum of the largest r singular values in the network by iterating through finding the gradient descent direction of the objective. The descent direction is given by a greedy selection of edges with the highest edge centrality values, resulting in an effective edge weight reduction method. Our algorithm exhibits significant performance on mobility networks and weighted graphs, and we offer the code to run experiments on these networks.
 
 <div align=center><img src='main.png' width="650"></div>
 
